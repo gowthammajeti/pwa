@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Resume</title>
+    <link rel="stylesheet" href="style.css">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  </head>
+  <body>
+<div class="main1">
+  <div class="left">
+  </div>
+  <div class="right">
+  </div>
+
+</div>
+  </body>
+</html>
+<script type="text/javascript">
+var userdata=window.location.search.substring(1).split("&");
+  for(var i=0;i<userdata.length;i++){
+  var dt=userdata[i].split("=");
+  console.log(dt);
+}
+console.log(dt[1]);
+//indexedDB
+var request;
+var open;
+var tx;
+var store;
+var result;
+var indexedDB = window.indexedDB||window.webkitIndexedDB||window.msIndexedDB;
+request = indexedDB.open("mydatabase",1);
+request.onerror = function(e){
+  console.log("error"+e);
+  }
+ request.onupgradeneeded = function(e){
+   result= e.target.result;
+   store =result.createObjectStore("resume",{keyPath:"name"});
+ }
+ request.onsuccess=function(e){
+   result =e.target.result;
+   tx=result.transaction("resume",'readwrite');
+   store=tx.objectStore("resume");
+   var info =store.get(dt[1]);
+   //onsuccess
+   info.onsuccess=function(e){
+     var finalresult=e.target.result;
+     console.log(finalresult);
+     personalinfo(finalresult);
+     career(finalresult);
+     education(finalresult.education);
+   }
+ }
+ var left=document.querySelector(".left");
+ var right=document.querySelector(".right");
+ function personalinfo(pi){
+   var img =document.createElement("img");
+   img.src="images.png";
+   img.alt="pi.name";
+   left.appendChild(img);
+
+ var name=document.createElement("h1");
+  name.textContent=pi.name;
+  left.appendChild(name);
+
+  var email=document.createElement("p");
+  email.textContent=pi.email;
+  left.appendChild(email);
+
+  var mobile=document.createElement("p");
+  mobile.textContent=pi.mobile;
+  left.appendChild(mobile);
+  }
+  function career(ca){
+    var heading =document.createElement("h1");
+    heading.textContent="careerobjective";
+    right.appendChild(heading);
+    var hr=document.createElement("hr");
+    right.appendChild(hr);
+
+
+    var career=document.createElement("p");
+    career.textContent=ca.career;
+    right.appendChild(career);
+  }
+//education
+
+function education(edu){
+
+  var heading =document.createElement("h1");
+  heading.textContent="Education details";
+  right.appendChild(heading);
+  var hr=document.createElement("hr");
+  right.appendChild(hr);
+   var ul =document.createElement("ul");
+   right.appendChild(ul);
+   for(var i in edu){
+     var li=document.createElement("li");
+     li.textContent=edu[i].course;
+     ul.appendChild(li);
+
+      var institute=document.createElement("p");
+      institute.textContent=edu[i].institute;
+      ul.appendChild(institute);
+
+      var year=document.createElement("p");
+      year.textContent=edu[i].year;
+      ul.appendChild(year);
+
+      var percen=document.createElement("p");
+      percen.textContent=edu[i].percen;
+      ul.appendChild(percen);
+   }
+
+}
+
+</script>

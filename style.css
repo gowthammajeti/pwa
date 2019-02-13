@@ -1,0 +1,64 @@
+.main{
+  background-color:pink;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content: center;
+  border: 2px solid #F90951;
+  width:100%;
+}
+
+
+.s1{
+  width:85%;
+  margin: 2%;
+  padding: 2%;
+  border: 2px solid #F90951;
+}
+.s2{
+  width: 40%;
+  margin: 2%;
+  padding: 2%;
+  border: 2px solid #F90951;
+  background-color: lightblue;
+}
+select.input{
+  width:80%;
+}
+
+/*index.html*/
+header{
+  text-align: center;
+}
+.parent{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.child{
+  width: 25%;
+  border: 1px solid #;
+  box-shadow: 3px 3px 3px #F90951;
+  padding: 1%;
+  margin: 1%;
+}
+/* resume.html */
+.main1{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px solid #F90951;
+}
+.left{
+  width: 25%;
+  margin: 2%;
+  padding: 2%;
+  border: 2px solid #F90951
+}
+.right{
+  width: 25%;
+  margin: 2%;
+  padding: 2%;
+  border: 2px solid #F90951
+}
